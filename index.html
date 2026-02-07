@@ -1,190 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Rose Day Tanvi 💖</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Tanvi 🌹</title>
+    <style>
+        :root {
+            --primary-red: #ff4d6d;
+            --soft-pink: #ffccd5;
+            --dark-red: #800f2f;
+        }
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Segoe UI',sans-serif;
-}
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a0005 0%, #4d0011 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-body{
-  min-height:100vh;
-  background:radial-gradient(circle at top,#2b0a14,#000);
-  overflow:hidden;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:#fff;
-}
+        /* Animated Petal Background */
+        #bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
 
-/* 💗 HEART BACKGROUND */
-.hearts{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-}
+        /* Glassmorphism Card */
+        .card {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 350px;
+            width: 90%;
+            animation: fadeIn 1.5s ease-out;
+        }
 
-.heart{
-  position:absolute;
-  bottom:-40px;
-  width:18px;
-  height:18px;
-  background:#ff4d6d;
-  transform:rotate(45deg);
-  animation:float 10s linear infinite, beat 1.2s ease-in-out infinite;
-  opacity:.85;
-  filter:drop-shadow(0 0 10px #ff4d6d);
-}
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-red);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(255, 77, 109, 0.4);
+        }
 
-.heart::before,
-.heart::after{
-  content:'';
-  position:absolute;
-  width:18px;
-  height:18px;
-  background:#ff4d6d;
-  border-radius:50%;
-}
-.heart::before{top:-9px;left:0}
-.heart::after{left:-9px;top:0}
+        h1 {
+            color: var(--soft-pink);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
 
-@keyframes float{
-  to{transform:translateY(-120vh) rotate(45deg)}
-}
-@keyframes beat{
-  0%,100%{transform:scale(1) rotate(45deg)}
-  50%{transform:scale(1.35) rotate(45deg)}
-}
+        .quote {
+            color: #fff;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
 
-/* 💖 CARD */
-.card{
-  position:relative;
-  z-index:2;
-  width:340px;
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(14px);
-  border-radius:24px;
-  padding:20px;
-  text-align:center;
-  box-shadow:0 0 45px rgba(255,77,109,.5);
-}
+        /* Beating Heart Animation */
+        .heart {
+            color: var(--primary-red);
+            font-size: 3rem;
+            display: inline-block;
+            animation: heartbeat 1.2s infinite;
+            margin: 1rem 0;
+        }
 
-h1{
-  color:#ff6f91;
-  margin-bottom:12px;
-}
+        .footer {
+            color: var(--soft-pink);
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            opacity: 0.8;
+        }
 
-.photo{
-  width:100%;
-  border-radius:18px;
-  margin:14px 0;
-  box-shadow:0 0 25px rgba(255,77,109,.7);
-}
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.25); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            60% { transform: scale(1); }
+        }
 
-.message{
-  line-height:1.6;
-  font-size:15px;
-  margin-top:10px;
-}
-
-/* 💘 BUTTONS */
-.buttons{
-  margin-top:18px;
-  position:relative;
-  height:60px;
-}
-
-button{
-  padding:10px 18px;
-  border:none;
-  border-radius:25px;
-  font-size:15px;
-  cursor:pointer;
-  transition:.3s;
-}
-
-.yes{
-  background:#ff4d6d;
-  color:#fff;
-  box-shadow:0 0 15px rgba(255,77,109,.8);
-}
-
-.yes:hover{
-  transform:scale(1.1);
-}
-
-.no{
-  position:absolute;
-  right:0;
-  background:#444;
-  color:#fff;
-}
-
-footer{
-  margin-top:14px;
-  font-size:12px;
-  opacity:.75;
-}
-</style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- HEARTS -->
-<div class="hearts" id="hearts"></div>
+    <canvas id="bg-canvas"></canvas>
 
-<!-- CARD -->
-<div class="card">
-  <h1>Happy Rose Day Tanvi 🌹</h1>
+    <div class="card">
+        <img src="her.jpg" alt="Tanvi" class="profile-pic">
+        <h1>Happy Rose Day, Tanvi</h1>
+        
+        <div class="heart">❤️</div>
+        
+        <p class="quote">
+            "In a garden full of roses, you are the one that never fades. You make every day feel like spring."
+        </p>
 
-  <img src="her.jpg" class="photo" alt="Tanvi">
+        <div class="footer">
+            With love, <br>
+            <strong>Kuldeep</strong>
+        </div>
+    </div>
 
-  <div class="message">
-    Dear Tanvi 💖<br>
-    Every heartbeat reminds me of you.<br>
-    Your smile is my favorite feeling.<br>
-    Happy Rose Day ❤️<br><br>
-    — Kuldeep
-  </div>
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let petals = [];
 
-  <div class="buttons">
-    <button class="yes" onclick="alert('Yay! 💖 You made my day Tanvi 🌹')">
-      Yes 💕
-    </button>
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
 
-    <button class="no" id="noBtn">
-      No 🙈
-    </button>
-  </div>
+        window.addEventListener('resize', resize);
+        resize();
 
-  <footer>Made with ❤️ by Kuldeep</footer>
-</div>
+        class Petal {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 5 + 2;
+                this.speed = Math.random() * 2 + 1;
+                this.weight = Math.random() * 1;
+                this.angle = Math.random() * 360;
+            }
 
-<script>
-/* generate hearts */
-const hearts=document.getElementById("hearts");
-for(let i=0;i<35;i++){
-  const h=document.createElement("div");
-  h.className="heart";
-  h.style.left=Math.random()*100+"vw";
-  h.style.animationDuration=6+Math.random()*6+"s";
-  hearts.appendChild(h);
-}
+            update() {
+                this.y += this.speed;
+                this.x += Math.sin(this.angle) * 0.5;
+                this.angle += 0.01;
+                if (this.y > canvas.height) {
+                    this.y = -10;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
 
-/* runaway NO button */
-const noBtn=document.getElementById("noBtn");
-noBtn.addEventListener("mouseover",()=>{
-  noBtn.style.left=Math.random()*200-100+"px";
-  noBtn.style.top=Math.random()*40-20+"px";
-});
-</script>
+            draw() {
+                ctx.fillStyle = '#ff4d6d';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
 
+        function init() {
+            for (let i = 0; i < 50; i++) {
+                petals.push(new Petal());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            petals.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+    </script>
 </body>
 </html>
