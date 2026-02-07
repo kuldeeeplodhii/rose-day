@@ -2,186 +2,205 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>For Tanvi 🌹</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-red: #ff4d6d;
-            --soft-pink: #ffccd5;
-            --dark-red: #800f2f;
+            --primary: #ff4d6d;
+            --secondary: #ffccd5;
+            --dark: #590d22;
+            --gold: #ffb703;
         }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a0005 0%, #4d0011 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background: #1a0005; overflow: hidden;
+            display: flex; justify-content: center; align-items: center;
         }
 
-        /* Animated Petal Background */
-        #bg-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
+        /* Background Animation */
+        #canvas { position: fixed; top: 0; left: 0; z-index: 1; }
+
+        /* General Container */
+        .container {
+            position: relative; z-index: 10; width: 90%; max-width: 400px;
+            display: flex; justify-content: center; align-items: center;
         }
 
-        /* Glassmorphism Card */
+        /* --- SCREEN 1: THE ENVELOPE --- */
+        .envelope-wrapper {
+            cursor: pointer; transition: transform 0.3s;
+        }
+        .envelope {
+            width: 280px; height: 180px; background: #c9184a;
+            position: relative; border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .envelope::before {
+            content: ''; position: absolute; top: -100px; left: 0;
+            border-left: 140px solid transparent; border-right: 140px solid transparent;
+            border-bottom: 100px solid #ff4d6d; z-index: 2;
+        }
+        .heart-seal {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            font-size: 40px; z-index: 3; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+        }
+        .envelope-text {
+            position: absolute; bottom: 20px; width: 100%; text-align: center;
+            color: white; font-weight: 600;
+        }
+
+        /* --- SCREEN 2 & 3: THE CONTENT --- */
         .card {
-            position: relative;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            max-width: 350px;
-            width: 90%;
-            animation: fadeIn 1.5s ease-out;
+            display: none; background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 25px; border-radius: 20px; text-align: center;
+            color: white; width: 100%; animation: zoomIn 0.8s ease;
         }
 
         .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
+            width: 120px; height: 120px; border-radius: 50%;
+            border: 3px solid var(--primary); margin-bottom: 15px;
             object-fit: cover;
-            border: 4px solid var(--primary-red);
-            margin-bottom: 1.5rem;
-            box-shadow: 0 0 20px rgba(255, 77, 109, 0.4);
         }
 
-        h1 {
-            color: var(--soft-pink);
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        h1 { font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin: 10px 0; color: var(--secondary); }
+        
+        .quote-box { font-style: italic; font-size: 0.95rem; margin: 15px 0; line-height: 1.5; color: #fff; }
+
+        .btn {
+            background: var(--primary); color: white; border: none;
+            padding: 12px 25px; border-radius: 50px; font-weight: 600;
+            cursor: pointer; margin-top: 15px; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
         }
 
-        .quote {
-            color: #fff;
-            font-style: italic;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin: 1rem 0;
+        /* --- SCREEN 3: VALENTINE --- */
+        .val-buttons { 
+            display: flex; justify-content: center; gap: 20px; margin-top: 30px; 
+            position: relative; height: 100px; align-items: flex-start;
         }
+        #noBtn { position: absolute; transition: 0.2s ease; z-index: 100; }
+        #yesBtn { z-index: 101; }
 
-        /* Beating Heart Animation */
-        .heart {
-            color: var(--primary-red);
-            font-size: 3rem;
-            display: inline-block;
-            animation: heartbeat 1.2s infinite;
-            margin: 1rem 0;
-        }
+        .hidden { display: none !important; }
 
-        .footer {
-            color: var(--soft-pink);
-            font-size: 0.9rem;
-            margin-top: 1.5rem;
-            opacity: 0.8;
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            15% { transform: scale(1.25); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.15); }
-            60% { transform: scale(1); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
 <body>
 
-    <canvas id="bg-canvas"></canvas>
+    <canvas id="canvas"></canvas>
 
-    <div class="card">
-        <img src="her.jpg" alt="Tanvi" class="profile-pic">
-        <h1>Happy Rose Day, Tanvi</h1>
-        
-        <div class="heart">❤️</div>
-        
-        <p class="quote">
-            "In a garden full of roses, you are the one that never fades. You make every day feel like spring."
-        </p>
+    <div class="container">
+        <div class="envelope-wrapper" id="screen1" onclick="openLetter()">
+            <div class="envelope">
+                <div class="heart-seal">❤️</div>
+                <div class="envelope-text">For Tanvi, From Kuldeep</div>
+            </div>
+        </div>
 
-        <div class="footer">
-            With love, <br>
-            <strong>Kuldeep</strong>
+        <div class="card" id="screen2">
+            <img src="her.jpg" alt="Tanvi" class="profile-pic">
+            <h1>Happy Rose Day, Tanvi 🌹</h1>
+            <div class="quote-box">
+                "Of all the roses in the world, you are the rarest and most beautiful. A rose speaks of love silently, in a language known only to the heart."<br><br>
+                "Every heartbeat of mine carries your name. You make my life a beautiful garden."
+            </div>
+            <button class="btn" onclick="showSurprise()">Click for a surprise ✨</button>
+        </div>
+
+        <div class="card" id="screen3">
+            <h1 style="font-size: 2.5rem;">Tanvi... ❤️</h1>
+            <p style="font-size: 1.2rem;">Will you be my Valentine?</p>
+            <div class="val-buttons">
+                <button class="btn" id="yesBtn" onclick="celebrate()">YES! 😍</button>
+                <button class="btn" id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No 😢</button>
+            </div>
+        </div>
+
+        <div class="card" id="screen4">
+            <h1>Yay! ❤️🎉</h1>
+            <p>You've made me the happiest person, Tanvi!</p>
+            <div style="font-size: 50px;">💖🌹💍</div>
         </div>
     </div>
 
     <script>
-        const canvas = document.getElementById('bg-canvas');
+        // --- SCREEN NAVIGATION ---
+        function openLetter() {
+            document.getElementById('screen1').classList.add('hidden');
+            document.getElementById('screen2').style.display = 'block';
+        }
+
+        function showSurprise() {
+            document.getElementById('screen2').classList.add('hidden');
+            document.getElementById('screen3').style.display = 'block';
+        }
+
+        function celebrate() {
+            document.getElementById('screen3').classList.add('hidden');
+            document.getElementById('screen4').style.display = 'block';
+        }
+
+        // --- RUNNING BUTTON LOGIC ---
+        function moveNo() {
+            const btn = document.getElementById('noBtn');
+            const container = document.querySelector('.val-buttons');
+            
+            // Calculate random positions within the visible area
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth - 20);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight - 20);
+            
+            // Move button globally since it's hard to catch
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        // --- BACKGROUND ANIMATION (Falling Roses/Hearts) ---
+        const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
-        
-        let petals = [];
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Petal {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height - canvas.height;
-                this.size = Math.random() * 5 + 2;
-                this.speed = Math.random() * 2 + 1;
-                this.weight = Math.random() * 1;
-                this.angle = Math.random() * 360;
-            }
-
-            update() {
-                this.y += this.speed;
-                this.x += Math.sin(this.angle) * 0.5;
-                this.angle += 0.01;
-                if (this.y > canvas.height) {
-                    this.y = -10;
-                    this.x = Math.random() * canvas.width;
-                }
-            }
-
-            draw() {
-                ctx.fillStyle = '#ff4d6d';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
+        let particles = [];
 
         function init() {
-            for (let i = 0; i < 50; i++) {
-                petals.push(new Petal());
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            for(let i=0; i<30; i++) particles.push(new Particle());
+        }
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = -20;
+                this.size = Math.random() * 15 + 10;
+                this.speed = Math.random() * 2 + 1;
+                this.symbol = Math.random() > 0.5 ? '🌹' : '❤️';
+            }
+            update() {
+                this.y += this.speed;
+                if(this.y > canvas.height) this.reset();
+            }
+            draw() {
+                ctx.font = `${this.size}px serif`;
+                ctx.fillText(this.symbol, this.x, this.y);
             }
         }
 
         function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            petals.forEach(p => {
-                p.update();
-                p.draw();
-            });
+            ctx.clearRect(0,0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animate);
         }
 
-        init();
-        animate();
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+        init(); animate();
     </script>
 </body>
 </html>
