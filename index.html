@@ -1,413 +1,140 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>Happy Rose Day Tanvi 🌹</title>
-
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Rose Day Tanvi 💖</title>
 
 <style>
-
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
 
 body{
-
   min-height:100vh;
-
-  background:radial-gradient(circle at top,#0b0f2b,#000);
-
-  overflow-x:hidden;
-
+  background: radial-gradient(circle at top, #1b0a14, #000);
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   color:#fff;
-
 }
 
-
-
-/* Night sky particles */
-
-canvas{
-
+/* 💗 Heart background */
+.hearts{
   position:fixed;
-
   inset:0;
-
-  z-index:-2;
-
-}
-
-
-
-/* Roses background */
-
-.rose-bg{
-
-  position:fixed;
-
-  inset:0;
-
   z-index:-1;
-
-  background:url("https://i.imgur.com/8KZQZgR.png");
-
-  opacity:.12;
-
-  animation:blink 6s infinite alternate;
-
+  overflow:hidden;
 }
 
-@keyframes blink{
-
-  0%{opacity:.05}
-
-  100%{opacity:.15}
-
+.heart{
+  position:absolute;
+  bottom:-20px;
+  width:20px;
+  height:20px;
+  background:#ff4d6d;
+  transform:rotate(45deg);
+  animation:float 8s linear infinite, beat 1.5s ease-in-out infinite;
+  opacity:.6;
 }
-
-
-
-.container{
-
-  max-width:360px;
-
-  margin:40px auto;
-
-  padding:25px;
-
-  background:rgba(255,255,255,.08);
-
-  border-radius:20px;
-
-  box-shadow:0 0 30px rgba(255,0,80,.3);
-
-  backdrop-filter:blur(10px);
-
-  animation:float 5s ease-in-out infinite;
-
+.heart::before,
+.heart::after{
+  content:'';
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:#ff4d6d;
+  border-radius:50%;
 }
+.heart::before{top:-10px;left:0}
+.heart::after{left:-10px;top:0}
 
 @keyframes float{
-
-  0%,100%{transform:translateY(0)}
-
-  50%{transform:translateY(-10px)}
-
+  to{transform:translateY(-110vh) rotate(45deg)}
+}
+@keyframes beat{
+  0%,100%{transform:scale(1) rotate(45deg)}
+  50%{transform:scale(1.25) rotate(45deg)}
 }
 
+/* 💖 Card */
+.card{
+  width:340px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(12px);
+  border-radius:22px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 0 40px rgba(255,77,109,.4);
+  animation:fadeIn 1.5s ease;
+}
 
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:none}
+}
 
 h1{
-
-  text-align:center;
-
-  color:#ff5c8a;
-
-  margin-bottom:15px;
-
-  animation:pulse 2s infinite;
-
+  color:#ff6f91;
+  margin-bottom:12px;
 }
-
-@keyframes pulse{
-
-  0%{transform:scale(1)}
-
-  50%{transform:scale(1.05)}
-
-  100%{transform:scale(1)}
-
-}
-
-
 
 .photo{
-
   width:100%;
-
-  border-radius:15px;
-
-  margin:15px 0;
-
-  box-shadow:0 0 15px rgba(255,0,80,.4);
-
-  animation:zoom 4s infinite alternate;
-
+  border-radius:18px;
+  margin:12px 0;
+  box-shadow:0 0 20px rgba(255,77,109,.6);
 }
-
-@keyframes zoom{
-
-  from{transform:scale(1)}
-
-  to{transform:scale(1.05)}
-
-}
-
-
 
 .message{
-
-  min-height:80px;
-
-  text-align:center;
-
-  line-height:1.5;
-
-}
-
-
-
-.rose{
-
-  width:80px;
-
-  display:block;
-
-  margin:15px auto;
-
-  animation:spin 6s linear infinite;
-
-}
-
-@keyframes spin{
-
-  to{transform:rotate(360deg)}
-
-}
-
-
-
-button{
-
-  width:100%;
-
-  padding:12px;
-
+  line-height:1.6;
+  font-size:15px;
   margin-top:10px;
-
-  border:none;
-
-  border-radius:25px;
-
-  background:#ff5c8a;
-
-  color:white;
-
-  font-size:16px;
-
-  cursor:pointer;
-
-  transition:.3s;
-
 }
-
-button:hover{
-
-  background:#ff2f6d;
-
-  transform:scale(1.05);
-
-}
-
-
-
-.no{
-
-  position:relative;
-
-}
-
-
-
-.timeline{
-
-  margin-top:20px;
-
-}
-
-.timeline input{
-
-  width:100%;
-
-}
-
-
 
 footer{
-
-  text-align:center;
-
+  margin-top:12px;
   font-size:12px;
-
   opacity:.7;
-
-  margin-top:10px;
-
 }
-
-
-
-/* Mobile friendly */
-
-@media(max-width:420px){
-
-  .container{margin:20px}
-
-}
-
 </style>
-
 </head>
-
-
 
 <body>
 
-
-
-<canvas id="stars"></canvas>
-
-<div class="rose-bg"></div>
-
-
-
-<audio autoplay loop>
-
-  <source src="song.mp3" type="audio/mpeg">
-
-</audio>
-
-
-
-<div class="container">
-
-  <h1>Happy Rose Day Tanvi 🌹</h1>
-
-
-
-  <img src="us.jpg" class="photo" alt="Us">
-
-
-
-  <div class="message" id="text"></div>
-
-
-
-  <img src="https://i.imgur.com/JQZQZQF.png" class="rose">
-
-
-
-  <button onclick="alert('Yay! 💖 You made my day Tanvi 🌹')">Yes, be my Valentine 💕</button>
-
-  <button class="no" id="noBtn">No 🙈</button>
-
-
-
-  <div class="timeline">
-
-    <p>Our memories timeline 💞</p>
-
-    <input type="range" min="1" max="100">
-
-  </div>
-
-
-
-  <footer>Made with ❤️ by Kuldeep</footer>
-
+<div class="hearts">
+  <!-- generate hearts -->
+  <script>
+    for(let i=0;i<30;i++){
+      const h=document.createElement('div');
+      h.className='heart';
+      h.style.left=Math.random()*100+'vw';
+      h.style.animationDuration=6+Math.random()*6+'s';
+      h.style.opacity=Math.random();
+      document.querySelector('.hearts').appendChild(h);
+    }
+  </script>
 </div>
 
+<div class="card">
+  <h1>Happy Rose Day Tanvi 🌹</h1>
 
+  <img src="her.jpg" class="photo" alt="Tanvi">
 
-<script>
+  <div class="message">
+    Dear Tanvi 💖<br>
+    Every heartbeat reminds me of you.<br>
+    Your smile is my favorite feeling.<br>
+    Happy Rose Day ❤️<br><br>
+    — Kuldeep
+  </div>
 
-/* Typewriter effect */
-
-const msg = "Dear Tanvi, 🌸\nEvery rose reminds me of you.\nYour smile is my favorite view.\nHappy Rose Day ❤️\n— Kuldeep";
-
-let i=0;
-
-function type(){
-
-  if(i<msg.length){
-
-    document.getElementById("text").innerText += msg.charAt(i);
-
-    i++;
-
-    setTimeout(type,50);
-
-  }
-
-}
-
-type();
-
-
-
-/* No button runs away */
-
-const noBtn=document.getElementById("noBtn");
-
-noBtn.addEventListener("mouseover",()=>{
-
-  noBtn.style.left=Math.random()*200-100+"px";
-
-  noBtn.style.top=Math.random()*200-100+"px";
-
-});
-
-
-
-/* Stars */
-
-const c=document.getElementById("stars"),ctx=c.getContext("2d");
-
-function resize(){c.width=innerWidth;c.height=innerHeight}
-
-resize();addEventListener("resize",resize);
-
-let stars=Array.from({length:120},()=>({
-
-  x:Math.random()*c.width,
-
-  y:Math.random()*c.height,
-
-  r:Math.random()*1.5
-
-}));
-
-function draw(){
-
-  ctx.clearRect(0,0,c.width,c.height);
-
-  ctx.fillStyle="white";
-
-  stars.forEach(s=>{
-
-    ctx.beginPath();
-
-    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-
-    ctx.fill();
-
-  });
-
-  requestAnimationFrame(draw);
-
-}
-
-draw();
-
-</script>
-
-
+  <footer>Made with ❤️ by Kuldeep</footer>
+</div>
 
 </body>
-
 </html>
